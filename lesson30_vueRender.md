@@ -2,7 +2,7 @@
 [render](https://cn.vuejs.org/v2/api/#render)
 [渲染函数](https://cn.vuejs.org/v2/guide/render-function.html)
 
-```
+```javascript
 new Vue({
     el: '#App',
     components: {

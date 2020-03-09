@@ -67,7 +67,7 @@ let obj = {name, sex};
 console.log(obj); // {name: mm, sex: girl}
 ```
 
-# 父组件可以传给自组件Function
+# 父组件可以传给子组件Function
 在父组件中定义的方法，可以通过props传入子组件，然后在子组件中可以直接调用
 
 APP ——>LIST ——> ITEM逐层传递

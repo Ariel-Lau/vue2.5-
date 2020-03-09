@@ -2,23 +2,24 @@
 一旦更新了data中的某个属性数据，所有界面上直接使用（如{{msg}}）或间接使用（如computed计算属性）了此属性的节点都会更新。
 
 * 初始化显示：页面（表达式/指令）能从data读取数据显示（编译/解析）
+  new MVVM() => compile解析指令 => updater初始化视图
 * 更新显示：更新data中的属性数据——>页面更新
 
 ## 数据劫持
 * 1）数据劫持是vue中用来实现数据绑定的一种技术
 * 2）基本思想：通过defineProperty()来监视data中所有属性（任意层次）数据的变化，一旦变化就去更新界面
 
-![](/imgs/datahack2.jpg)
-![](/imgs/datahack3.jpg)
-![](/imgs/datahack4.jpg)
-![](/imgs/datahack5.jpg)
-![](/imgs/datahack6.jpg)
-![](/imgs/datahack7.jpg)
+![](./imgs/datahack2.jpg)
+![](./imgs/datahack3.jpg)
+![](./imgs/datahack4.jpg)
+![](./imgs/datahack5.jpg)
+![](./imgs/datahack6.jpg)
+![](./imgs/datahack7.jpg)
 
 **MVVM原理图分析**
 订阅者即Watcher，即初始化的编译/解析大括号/一般指令时创建 界面中的{{name}} v-text="name"等
-![](/imgs/datahack.jpg)
-![](/imgs/datahack8.jpg)
+![](./imgs/datahack.jpg)
+![](./imgs/datahack8.jpg)
 
 MVVM
 modal：模型，数据对象（data）
@@ -41,7 +42,7 @@ const vm = new Vue({
 });
 ```
 **Dep和Watcher**
-![](/imgs/databind1.png)
+![](./imgs/databind1.png)
 
 ```
 data: {
@@ -60,7 +61,7 @@ data: {
         个数？
             与data中的属性一一对应
         Dep的结构？
-            id: 标识(对data中的属性包括层次中的属性进行唯一标识)
+            id: 标识(对data中的属性，包括所有层次中的属性进行唯一标识)
             如：
             data:{
                 name: 'mm', // id 1
@@ -85,10 +86,12 @@ data: {
             this.depIds = {}; // 相关的n个dep的容器对象
             this.value = this.get(); // 当前表达式对应的value
 
+    vm.name = 'mm' => data中的name属性值变化 => name的set()调用 => dep => 通知所有相关的watcher => updater
+
 Dep与Watcher直接的关系
     什么关系？
         多对多的关系
-        data属性（如name） ——> Dep ——> n个Watcher（模版中有多个表达式使用了此属性）(属性在模版中多次被使用，如: <p>{{name}}</p>  <div>{{name}}</div> v-text="name"
+        data属性（如name） ——> Dep ——> n个Watcher（模版中有多个表达式使用了此属性会有n个watcher）(属性在模版中多次被使用，如: <p>{{name}}</p>  <div>{{name}}</div> v-text="name"
         表达式——>Dep——>n个Dep()
         a.b ——> W ——>n个Dep(多层表达式：a.b.c n=3)
     如何建立的？
@@ -98,6 +101,18 @@ Dep与Watcher直接的关系
     什么时候建立？
         初始化的解析模块中的表达式创建Watcher对象时
 ```
+## 手画MVVM
+初始化显示阶段的MVVM：
+
+![](./imgs/mvvminit.jpg)
+
+更新显示阶段：红色线表示的是更新显示的整个mvvm过程
+![](./imgs/mvvmupdate.jpg)
 
 # 双向数据绑定
-![](/imgs/databind2.jpg)
+三步：
+1. model -> view，即：data: {name: mm} -> `<input :value="name"/>`
+2. 给元素添加input事件监听：ele.addEventListener('input', fn......)
+3. view -> model：view改变model会触发set()，即又会重新触发model -> view，这样就实现了双向绑定。所以核心还是model -> view
+
+![](./imgs/databind2.jpg)

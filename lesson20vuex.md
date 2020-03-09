@@ -1,22 +1,22 @@
 ## Vuex：全局的、共享的
 多个组件共享的状态可以放在Vuex中管理，即多个组件共享的data属性；组件内部使用的状态，不存在共享，不需要放在Vuex中管理
 
-![](/imgs/vuex1.jpg)
-![](/imgs/vuex2.jpg)
-![](/imgs/vuex3.jpg)
-![](/imgs/vuex4.jpg)
-![](/imgs/vuex5.jpg)
-![](/imgs/vuex6.jpg)
-![](/imgs/vuex7.jpg)
-![](/imgs/vuex8.jpg)
-![](/imgs/vuex9.jpg)
-![](/imgs/vuex10.jpg)
-![](/imgs/vuex11.jpg)
-![](/imgs/vuex12.jpg)
-![](/imgs/vuex13.jpg)
-![](/imgs/vuex14.jpg)
+![](./imgs/vuex1.jpg)
+![](./imgs/vuex2.jpg)
+![](./imgs/vuex3.jpg)
+![](./imgs/vuex4.jpg)
+![](./imgs/vuex5.jpg)
+![](./imgs/vuex6.jpg)
+![](./imgs/vuex7.jpg)
+![](./imgs/vuex8.jpg)
+![](./imgs/vuex9.jpg)
+![](./imgs/vuex10.jpg)
+![](./imgs/vuex11.jpg)
+![](./imgs/vuex12.jpg)
+![](./imgs/vuex13.jpg)
+![](./imgs/vuex14.jpg)
 
-```
+```javascript
 <!-- ===app.js=== -->
 import store from './store'
 new Vue({
@@ -95,7 +95,7 @@ export default new Vue.Store({
 </template>
 import {mapState, mapGetters, mapActions} from 'vuex';
 computed: {
-    <!-- mapState()返回值：{count() {return this.$atore.state['count']}} -->
+    <!-- mapState()返回值：{count() {return this.$store.state['count']}} -->
     ...mapState(['count']),
     <!-- mapGetters()返回值：{evenOrOdd() {return this.$store.getters['evenOrOdd']}} -->
     ...mapGetters(['evenOrOdd'])
@@ -121,4 +121,4 @@ methods: {
 ```
 
 ## Vuex原理图
-![](/imgs/vuex15.jpg)
+![](./imgs/vuex15.jpg)

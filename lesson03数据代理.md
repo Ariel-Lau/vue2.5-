@@ -8,7 +8,7 @@ b 所有添加的属性都包含getter/setter
 c getter/setter内部去操作data中对象的属性数据
 
 
-```
+```javascript
 // 实现指定属性代理的方法（核心）
 _proxy: function (key) {
     <!-- 保存vm -->
@@ -30,3 +30,8 @@ _proxy: function (key) {
     })
 }
 ```
+
+## vue中`数据代理`和`数据绑定`都是基于`Object.defineProperty()`方法实现的。
+
+## vue支持到最低的IE版本是多少：
+由于IE8不支持`Object.defineProperty()`这个语法，所以vue不支持IE8。
