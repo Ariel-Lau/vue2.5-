@@ -116,3 +116,8 @@ Dep与Watcher直接的关系
 3. view -> model：view改变model会触发set()，即又会重新触发model -> view，这样就实现了双向绑定。所以核心还是model -> view
 
 ![](./imgs/databind2.jpg)
+
+## Vue3.0通过Proxy和Reflect实现MVVM
+参考：牛逼的文章，思路逻辑很清晰，研究也很透彻
+https://juejin.im/post/5e7410ed51882549087dc365
+https://juejin.im/post/5e778c71518825491d3240fd
