@@ -64,21 +64,21 @@ console.log(obj.fullName); // 'Liu-Miao'
 ```
 
 ```javascript
-    <!-- 1.创建fragment -->
+    // 1.创建fragment
     const fragment = document.createDocumentFragment();
-    <!-- 2.取出ul中所有子节点取出保存到fragment -->
+    // 2.取出ul中所有子节点取出保存到fragments
     let child;
     while(child=ul.firstChild) { // 一个节点只能有一个父节点
         fragment.appendChild(child); // 相当与先将child从ul中移除，添加为fragment的子节点
     }
-    <!-- 3.更新fragment中所有的li文本 -->
+    // 3.更新fragment中所有的li文本s
     // 将dom节点的伪数组转成真正的数组
     Array.prototype.slice.call(fragment.childNodes).forEach(node => {
         if (node.nodeType === 1) { // 元素节点的nodeType是1，即元素li
             node.textContent = 'changetext';
         }
     });
-    <!-- 4.将fragment插入ul -->
+    // 4.将fragment插入uls
     // fragment也是节点类型
     // 为什么要用ul.appendChild()，由于fragment不与界面关联，如果更新fragment中的某个element，界面不变，所以需要通过给ul元素appendChild来更新界面。
     ul.appendChild(fragment);

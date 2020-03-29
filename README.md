@@ -79,7 +79,7 @@ var vm = new MVVM({
 ok, 思路已经整理完毕，也已经比较明确相关逻辑和模块功能了，let's do it
 我们知道可以利用`Obeject.defineProperty()`来监听属性变动
 那么将需要observe的数据对象进行递归遍历，包括子属性对象的属性，都加上	`setter`和`getter`
-这样的话，给这个对象的某个值赋值，就会触发`setter`，那么就能监听到了数据变化。。相关代码可以是这样：
+这样的话，给这个对象的某个值赋值，就会触发`setter`，那么就能监听到了数据变化。相关代码可以是这样：
 ```javascript
 var data = {name: 'kindeng'};
 observe(data);

@@ -131,3 +131,7 @@ methods: {
 
 ## Vuex原理图
 ![](./imgs/vuex15.jpg)
+
+## 为什么mutation不能用异步，但是action可以？
+区分 actions 和 mutations 并不是为了解决竞态问题，而是为了能用 devtools 追踪状态变化。
+https://www.zhihu.com/question/48759748/answer/112823337

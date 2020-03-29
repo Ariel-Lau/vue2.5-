@@ -12,7 +12,7 @@ new Vue({
     store
 })
 
-<!-- render渲染函数 -->
+// render渲染函数
 new Vue({
     el: '#App',
     render: h => h(App),
@@ -22,7 +22,7 @@ new Vue({
 new Vue({
     el: '#App',
     render: function (createdElement) {
-        <!-- <App/> -->
+        // <App/>
         return createdElement(App)
     },
     store

@@ -1,13 +1,13 @@
 ## 数据绑定
-一旦更新了data中的某个属性数据，所有界面上直接使用（如{{msg}}）或间接使用（如computed计算属性）了此属性的节点都会更新。
+一旦更新了data中的某个属性数据，所有界面上直接使用（如`{{msg}}`）或间接使用（如`computed`计算属性）了此属性的节点都会更新。
 
 * 初始化显示：页面（表达式/指令）能从data读取数据显示（编译/解析）
-  new MVVM() => compile解析指令 => updater初始化视图
+  `new MVVM()` => `compile`解析指令 => `updater`初始化视图
 * 更新显示：更新data中的属性数据——>页面更新
 
 ## 数据劫持
 * 1）数据劫持是vue中用来实现数据绑定的一种技术
-* 2）基本思想：通过defineProperty()来监视data中所有属性（任意层次）数据的变化，一旦变化就去更新界面
+* 2）基本思想：通过`Object.defineProperty()`来监视data中所有属性（任意层次）数据的变化，一旦变化就去更新界面
 
 ![](./imgs/datahack2.jpg)
 ![](./imgs/datahack3.jpg)
@@ -17,7 +17,7 @@
 ![](./imgs/datahack7.jpg)
 
 **MVVM原理图分析**
-订阅者即Watcher，即初始化的编译/解析大括号/一般指令时创建 界面中的{{name}} v-text="name"等
+订阅者即Watcher，即初始化的编译/解析大括号/一般指令时创建 界面中的`{{name}} v-text="name"`等
 ![](./imgs/datahack.jpg)
 ![](./imgs/datahack8.jpg)
 
@@ -86,7 +86,7 @@ data: {
             this.depIds = {}; // 相关的n个dep的容器对象
             this.value = this.get(); // 当前表达式对应的value
 
-    vm.name = 'mm' => data中的name属性值变化 => name的set()调用 => dep => 通知所有相关的watcher => updater
+    vm.name = 'mm' => data中的name属性值变化 => name的set()调用 => dep => 通知所有相关的watcher => cb(回调函数) => updater
 
 Dep与Watcher直接的关系
     什么关系？
@@ -99,7 +99,7 @@ Dep与Watcher直接的关系
     ——>cb(回调函数)——>updater
         data中属性的get()中建立
     什么时候建立？
-        初始化的解析模块中的表达式创建Watcher对象时
+        初始化的解析模块中的表达式创建Watcher对象
 ```
 ## 手画MVVM
 初始化显示阶段的MVVM：
@@ -121,3 +121,9 @@ Dep与Watcher直接的关系
 参考：牛逼的文章，思路逻辑很清晰，研究也很透彻
 https://juejin.im/post/5e7410ed51882549087dc365
 https://juejin.im/post/5e778c71518825491d3240fd
+
+这也是牛逼的文章，每个问题都研究的很透彻
+https://juejin.im/post/5e4d24cce51d4526f76eb2ba
+
+## vue3.0为什么用Proxy不用Object.defineProperty()?深度好文章
+https://mp.weixin.qq.com/s?__biz=Mzg2NTA4NTIwNA==&mid=2247485104&idx=1&sn=648f1850fb59f04c6ca52cdd794013b5&chksm=ce5e34cbf929bddd4325de7f78dc4ad5822cddff69c999d1225f860e917dfd3d6eea43527c56&token=1424393752&lang=zh_CN#rd
